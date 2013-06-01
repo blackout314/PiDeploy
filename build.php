@@ -9,10 +9,10 @@
 
 // parameters
 //
-$user 	= 'dabsvn';
-$pass 	= '\$svn11';
-$home 	= '/home/pro_dab/';
-$path 	= $home.'dev.dab.name';
+$user 	= 'username';
+$pass 	= 'password';
+$home 	= '/var/www/';
+$path 	= $home.'website';
 $repo 	= addslashes( $_GET['r'] );
 //
 // exec

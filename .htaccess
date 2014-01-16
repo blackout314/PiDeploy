@@ -1,5 +1,6 @@
 RewriteEngine On
 
 RewriteRule ^BUILD/([^/]+)$ /build.php?r=$1  [L]
-RewriteRule ^_archive/([^/]+)$ /index.html  [L]
+RewriteRule ^_archive/([^/]+)$ _archive/index.php  [L]
+RewriteRule ^VIEW/([^/]+)$ /view.php?url=$1  [L]
 #RewriteRule ^BUILD/([^/]+)/([^/]+)$ /build.php?r=$1&t=$2  [L]

@@ -5,7 +5,7 @@ Pi Php Deploy - deploy system php based
 
 ## build.json
 
-'''json
+```php
 {
 	"project" : {
 		"config" : {
@@ -16,11 +16,11 @@ Pi Php Deploy - deploy system php based
 		}
 	}
 }
-'''
+```
 
 ## project tree
 
-'''bash
+```bash
 / 					# <- pideploy root
 /project/				# <- your project root
 /project/src/ 				# <- your code here
@@ -28,7 +28,7 @@ Pi Php Deploy - deploy system php based
 /project/src/inc/demo.config.php 	# <- demo config file
 /project/src/inc/config.php 		# <- real config file
 /project/src/css/ 			# <- sass files
-'''
+```
 
 ## build
 

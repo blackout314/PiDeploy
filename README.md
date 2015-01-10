@@ -1,10 +1,7 @@
 # PiDeploy
 ========
 
-<<<<<<< HEAD
-Pi Php Deploy - deploy system php based
-=======
-Pi Php Deploy - deploy system php based
+[dead] Pi Php Deploy - deploy system php based
 
 ## build.json
 
@@ -42,4 +39,3 @@ http://yourplace/BUILD/project
 http://yourplace/VIEW/www.yourwebsite-subplace-
 
 this call http://www.yourwebsite/subplace/ 
->>>>>>> origin/master

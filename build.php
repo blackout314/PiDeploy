@@ -1,21 +1,16 @@
 <?php
 /**
- * magic php build machine
+ *
+ * PiDeploy - magic php build machine
  *
  * carlo "blackout" denaro
  *
- *
  */
 
-// parameters
+include 'inc.config.php';
+
 //
-$user 	= 'username';
-$pass 	= 'password';
-$home 	= '/var/www/';
-$path 	= $home.'website';
-$repo 	= addslashes( $_GET['r'] );
-//
-// exec
+// exec -> svn
 //
 $cmd 	= '2>&1 svn update '.$path.'/'.$repo.' --non-interactive --config-dir '.$home.'/.subversion --username '.$user.' --password '.$pass;
 $o	= shell_exec( $cmd ); 
@@ -24,17 +19,32 @@ $o	= shell_exec( $cmd );
 //
 if( preg_match('/At revision/', $o ) ) {
 	$rev = explode(' ',$o);
-	echo '{ "status" : "revisioned", "version" : '.str_replace('.','',$rev[2]).' }';
+	echo '{ "status" : "revisioned", "version" : '.str_replace('.','',$rev[2]).', "url" : "'.$url.$repo.'/src/" }';
 }else{
 	echo '{ "status" : "updated", "version" : "", "message" : "'.$o.'" }';
 }
-	$obj 	= json_decode( trim( file_get_contents( $path.'/'.$repo.'/build.json') ) );
-	$repo	= trim($repo);
 
-	foreach( $obj->$repo as $k=>$v) {
-		if( !copy( $path.'/'.$repo.$v.'demo.'.$k, $path.'/'.$repo.$v.$k ) )
-			echo 'non copiato';
-	}
+$obj 	= json_decode( trim( file_get_contents( $path.'/'.$repo.'/build.json') ) );
+$repo	= trim($repo);
+
 //
+// config replace from demo.FILE -> to -> FILE
+//
+foreach( $obj->$repo->config as $kk => $vv ) {
+	if( !copy( $path.'/'.$repo.$vv.'demo.'.$kk, $path.'/'.$repo.$vv.$kk ) )
+		echo 'non copiato';
+}
+
+//
+// sass compile
+//
+/* #TODO
+foreach( $obj->$repo->css as $kk => $vv ) {
+	$cmd 	= 'sass '.$path.'/'.$repo.$vv.$kk. ' ' . $path.'/'.$repo.$vv.'compiled.'.$kk;
+	//$o	= shell_exec( $cmd );
+}
+*/
+
+
 // -- eof
 ?>
